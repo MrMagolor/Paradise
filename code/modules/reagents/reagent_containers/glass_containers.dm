@@ -13,6 +13,7 @@
 	volume = 50
 	container_type = OPENCONTAINER
 	has_lid = TRUE
+	resistance_flags = ACID_PROOF
 
 	var/label_text = ""
 	// the fucking asshole who designed this can go die in a fire - Iamgoofball
@@ -51,10 +52,9 @@
 	base_name = name
 
 /obj/item/reagent_containers/glass/examine(mob/user)
-	if(!..(user, 2))
-		return
-	if(!is_open_container())
-		to_chat(user, "<span class='notice'>Airtight lid seals it completely.</span>")
+	. = ..()
+	if(get_dist(user, src) <= 2 && !is_open_container())
+		. += "<span class='notice'>Airtight lid seals it completely.</span>"
 
 /obj/item/reagent_containers/glass/attack(mob/M, mob/user, def_zone)
 	if(!is_open_container())
@@ -73,7 +73,7 @@
 		if(user.a_intent == INTENT_HARM)
 			M.visible_message("<span class='danger'>[user] splashes the contents of [src] onto [M]!</span>", \
 							"<span class='userdanger'>[user] splashes the contents of [src] onto [M]!</span>")
-			add_attack_logs(M, user, "Splashed with [name] containing [contained]", !!M.ckey ? null : ATKLOG_ALL)
+			add_attack_logs(user, M, "Splashed with [name] containing [contained]", !!M.ckey ? null : ATKLOG_ALL)
 			if(!iscarbon(user))
 				M.LAssailant = null
 			else
@@ -81,7 +81,7 @@
 
 			reagents.reaction(M, TOUCH)
 			reagents.clear_reagents()
-		else 
+		else
 			if(M != user)
 				M.visible_message("<span class='danger'>[user] attempts to feed something to [M].</span>", \
 							"<span class='userdanger'>[user] attempts to feed something to you.</span>")
@@ -90,11 +90,12 @@
 				if(!reagents || !reagents.total_volume)
 					return // The drink might be empty after the delay, such as by spam-feeding
 				M.visible_message("<span class='danger'>[user] feeds something to [M].</span>", "<span class='userdanger'>[user] feeds something to you.</span>")
-				add_attack_logs(M, user, "Fed with [name] containing [contained]", !!M.ckey ? null : ATKLOG_ALL)
+				add_attack_logs(user, M, "Fed with [name] containing [contained]", !!M.ckey ? null : ATKLOG_ALL)
 			else
 				to_chat(user, "<span class='notice'>You swallow a gulp of [src].</span>")
 
-			reagents.reaction(M, INGEST)
+			var/fraction = min(5 / reagents.total_volume, 1)
+			reagents.reaction(M, INGEST, fraction)
 			addtimer(CALLBACK(reagents, /datum/reagents.proc/trans_to, M, 5), 5)
 			playsound(M.loc,'sound/items/drink.ogg', rand(10,50), 1)
 	else
@@ -246,9 +247,9 @@
 	if(assembly)
 		assembly.HasProximity(AM)
 
-/obj/item/reagent_containers/glass/beaker/Crossed(atom/movable/AM)
+/obj/item/reagent_containers/glass/beaker/Crossed(atom/movable/AM, oldloc)
 	if(assembly)
-		assembly.Crossed(AM)
+		assembly.Crossed(AM, oldloc)
 
 /obj/item/reagent_containers/glass/beaker/on_found(mob/finder) //for mousetraps
 	if(assembly)
@@ -343,9 +344,18 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(5,10,15,20,25,30,50,80,100,120)
 	volume = 120
-	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 75, "acid" = 50) //Weak melee protection, because you can wear it on your head
 	slot_flags = SLOT_HEAD
+	resistance_flags = NONE
 	container_type = OPENCONTAINER
+
+/obj/item/reagent_containers/glass/bucket/wooden
+	name = "wooden bucket"
+	icon_state = "woodbucket"
+	item_state = "woodbucket"
+	materials = null
+	armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 50)
+	resistance_flags = FLAMMABLE
 
 /obj/item/reagent_containers/glass/bucket/equipped(mob/user, slot)
     ..()
