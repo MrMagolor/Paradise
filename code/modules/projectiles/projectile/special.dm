@@ -364,7 +364,8 @@
 	nodamage = 1
 	damage_type = BURN
 
-/obj/item/projectile/glitch/on_hit(atom/target)
+/obj/item/projectile/glitch/on_hit(atom/target) //Glitching (icon randomizing)
+	..()
 	target.icon_state = pick(icon_states(target.icon))
-		for(var/atom/a in target)
-			a.icon_state = pick(icon_states(a.icon))
+	for(var/atom/a in target)
+		a.icon_state = pick(icon_states(a.icon))

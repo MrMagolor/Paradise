@@ -258,3 +258,4 @@
 	projectile_type = /obj/item/projectile/glitch
 	fire_sound = 'sound/weapons/wave.ogg'
 	select_name = "chameleon bolt"
+	e_cost = 300

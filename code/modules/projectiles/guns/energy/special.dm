@@ -522,3 +522,4 @@
 	icon_state = "dragnet"
 	ammo_type = /obj/item/ammo_casing/energy/glitch
 	clumsy_check = 0 //Ditto as with mimic gun, besides, it's a funny item
+	cell_type = /obj/item/stock_parts/cell/pulse

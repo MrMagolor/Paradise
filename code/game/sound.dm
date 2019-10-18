@@ -161,5 +161,5 @@
 			if("honkbot_e")
 				soundin = pick('sound/items/bikehorn.ogg', 'sound/items/AirHorn2.ogg', 'sound/misc/sadtrombone.ogg', 'sound/items/AirHorn.ogg', 'sound/items/WEEOO1.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bcreep.ogg','sound/magic/Fireball.ogg' ,'sound/effects/pray.ogg', 'sound/voice/hiss1.ogg','sound/machines/buzz-sigh.ogg', 'sound/machines/ping.ogg', 'sound/weapons/flashbang.ogg', 'sound/weapons/bladeslice.ogg')
 			if("glitch")
-				soundin = pick('sounds/goonstation/machines/glitch1.ogg', 'sounds/goonstation/machines/glitch2.ogg', 'sounds/goonstation/machines/glitch3.ogg', 'sounds/goonstation/machines/glitch4.ogg', 'sounds/goonstation/machines/glitch5.ogg')
+				soundin = pick('sound/goonstation/machines/glitch1.ogg', 'sound/goonstation/machines/glitch2.ogg', 'sound/goonstation/machines/glitch3.ogg', 'sound/goonstation/machines/glitch4.ogg', 'sound/goonstation/machines/glitch5.ogg')
 	return soundin
