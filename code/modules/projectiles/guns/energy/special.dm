@@ -513,3 +513,12 @@
 	var/obj/item/ammo_casing/energy/mimic/M = ammo_type[select]
 	M.mimic_type = mimic_type
 	..()
+
+
+// Glitch Gun // 
+/obj/item/gun/energy/glitch
+	name = "prototype chameleon gun"
+	desc = "A weapon designed to change the appearance of whatever it hits. Being a prototype, it only half works."
+	icon_state = "dragnet"
+	ammo_type = /obj/item/ammo_casing/energy/glitch
+	clumsy_check = 0 //Ditto as with mimic gun, besides, it's a funny item

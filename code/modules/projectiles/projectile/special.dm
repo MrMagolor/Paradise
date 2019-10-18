@@ -355,3 +355,16 @@
 	var/mob/living/simple_animal/hostile/mimic/copy/ranged/R = new /mob/living/simple_animal/hostile/mimic/copy/ranged(T, G, firer)
 	if(ismob(target))
 		R.target = target
+
+/obj/item/projectile/glitch
+	name = "glitched chameleon bolt"
+	icon_state = "blastwave"
+	hitsound = "glitch"
+	damage = 0
+	nodamage = 1
+	damage_type = BURN
+
+/obj/item/projectile/glitch/on_hit(atom/target)
+	target.icon_state = pick(icon_states(target.icon))
+		for(var/atom/a in target)
+			a.icon_state = pick(icon_states(a.icon))
