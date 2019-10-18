@@ -42,7 +42,8 @@ GLOBAL_LIST_INIT(summoned_guns, list(
 	/obj/item/gun/projectile/revolver/golden,
 	/obj/item/gun/projectile/automatic/sniper_rifle,
 	/obj/item/gun/medbeam,
-	/obj/item/gun/energy/laser/scatter))
+	/obj/item/gun/energy/laser/scatter,
+	/obj/item/gun/energy/glitch))
 
 //if you add anything that isn't covered by the typepaths below, add it to summon_magic_objective_types
 GLOBAL_LIST_INIT(summoned_magic, list(
