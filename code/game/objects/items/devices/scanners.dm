@@ -73,6 +73,18 @@ REAGENT SCANNER
 						if(U && U.intact)
 							O.invisibility = 101
 							O.alpha = 255
+			
+			if(istype(O, /obj/structure/closet/floor_closet))
+				var/obj/structure/closet/floor_closet/C = O
+				C.plane = initial(C.plane)
+				C.layer = initial(C.layer)
+				C.icon = initial(C.icon)
+				C.icon_opened = initial(C.icon_opened)
+				C.icon_closed = initial(C.icon_closed)
+				C.name = initial(C.name)
+				C.desc = initial(C.desc)
+				C.update_icon()
+
 		for(var/mob/living/M in T.contents)
 			var/oldalpha = M.alpha
 			if(M.alpha < 255 && istype(M))
