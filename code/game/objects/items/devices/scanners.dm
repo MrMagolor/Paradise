@@ -74,8 +74,8 @@ REAGENT SCANNER
 							O.invisibility = 101
 							O.alpha = 255
 			
-			if(istype(O, /obj/structure/closet/floor_closet))
-				var/obj/structure/closet/floor_closet/C = O
+			if(istype(O, /obj/structure/closet/bluespace/floor_closet))
+				var/obj/structure/closet/bluespace/floor_closet/C = O
 				C.plane = initial(C.plane)
 				C.layer = initial(C.layer)
 				C.icon = initial(C.icon)

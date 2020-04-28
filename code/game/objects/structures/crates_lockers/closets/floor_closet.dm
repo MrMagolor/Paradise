@@ -1,10 +1,7 @@
-/obj/structure/closet/floor_closet
+/obj/structure/closet/bluespace/floor_closet
 	name = "floor(?)"
 	desc = "Where did this come from?"
 	density = TRUE
-	icon_state = "bluespace"
-	icon_closed = "bluespaceclosed"
-	icon_opened = "bluespaceopen"
 	plane = OBJ_LAYER
 	layer = BELOW_OBJ_LAYER
 	storage_capacity = 30 //With the chameleon technology it doesn't hold as much as a normal bluespace closet
@@ -12,9 +9,9 @@
 
 /obj/structure/closet/floor_closet/close()
 	if(!opened)
-		return FALSE
+		return 
 	if(!can_close())
-		return FALSE
+		return 
 	var/turf/T = get_turf(src)
 	if(T)
 		icon = T.icon
