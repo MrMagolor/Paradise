@@ -74,7 +74,7 @@ REAGENT SCANNER
 							O.invisibility = 101
 							O.alpha = 255
 			
-			if(istype(O, /obj/structure/closet/bluespace/floor_closet))
+			if(istype(O, /obj/structure/closet/bluespace/floor_closet)) // Allows t-ray scanners to show a disguised floor closet's true form
 				var/obj/structure/closet/bluespace/floor_closet/C = O
 				C.plane = initial(C.plane)
 				C.layer = initial(C.layer)

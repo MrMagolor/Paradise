@@ -24,8 +24,7 @@
 	else
 		icon = initial(icon)
 		icon_closed = initial(icon_closed)
-	. = ..()	
-	
+	. = ..() //Runs the parent function AFTER the turf check, as otherwise it would not disguise properly	
 
 /obj/structure/closet/floor_closet/open()
 	. = ..()
