@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(lawlorify, list (
 	var/form = BASIC_DEVIL
 	var/exists = 0
 	var/static/list/dont_remove_spells = list(
-	/obj/effect/proc_holder/spell/targeted/summon_contract,
+	/obj/effect/proc_holder/spell/targeted/click/summon_contract,
 	/obj/effect/proc_holder/spell/targeted/conjure_item/violin,
 	/obj/effect/proc_holder/spell/targeted/summon_dancefloor)
 	var/ascendable = FALSE
@@ -298,7 +298,7 @@ GLOBAL_LIST_INIT(lawlorify, list (
 	if(!D)
 		return
 	to_chat(world, "<font size=5><span class='danger'>SLOTH, WRATH, GLUTTONY, ACEDIA, ENVY, GREED, PRIDE! FIRES OF HELL AWAKEN!!</span></font>")
-	world << 'sound/hallucinations/veryfar_noise.ogg'
+	SEND_SOUND(world, sound('sound/hallucinations/veryfar_noise.ogg'))
 	sleep(50)
 	if(!SSticker.mode.devil_ascended)
 		SSshuttle.emergency.request(null, 0.3)
@@ -326,12 +326,12 @@ GLOBAL_LIST_INIT(lawlorify, list (
 			owner.RemoveSpell(S)
 
 /datum/devilinfo/proc/give_summon_contract()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/summon_contract(null))
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/click/summon_contract(null))
 
 
 /datum/devilinfo/proc/give_base_spells(give_summon_contract = 0)
 	remove_spells()
-	owner.AddSpell(new /obj/effect/proc_holder/spell/fireball/hellish(null))
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/click/fireball/hellish(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/pitchfork(null))
 	if(give_summon_contract)
 		give_summon_contract()
@@ -343,13 +343,13 @@ GLOBAL_LIST_INIT(lawlorify, list (
 /datum/devilinfo/proc/give_lizard_spells()
 	remove_spells()
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/pitchfork(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/fireball/hellish(null))
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/click/fireball/hellish(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/infernal_jaunt(null))
 
 /datum/devilinfo/proc/give_true_spells()
 	remove_spells()
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/conjure_item/pitchfork/greater(null))
-	owner.AddSpell(new /obj/effect/proc_holder/spell/fireball/hellish(null))
+	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/click/fireball/hellish(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/infernal_jaunt(null))
 	owner.AddSpell(new /obj/effect/proc_holder/spell/targeted/sintouch(null))
 

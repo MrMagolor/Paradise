@@ -14,6 +14,7 @@ SUBSYSTEM_DEF(air)
 	wait = 5
 	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	offline_implications = "Turfs will no longer process atmos, and all atmospheric machines (including cryotubes) will no longer function. Shuttle call recommended."
 	var/cost_turfs = 0
 	var/cost_groups = 0
 	var/cost_highpressure = 0
@@ -37,6 +38,9 @@ SUBSYSTEM_DEF(air)
 	//Special functions lists
 	var/list/active_super_conductivity = list()
 	var/list/high_pressure_delta = list()
+
+	/// Pipe overlay/underlay icon manager
+	var/datum/pipe_icon_manager/icon_manager
 
 
 	var/list/currentrun = list()
@@ -65,6 +69,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/Initialize(timeofday)
 	setup_overlays() // Assign icons and such for gas-turf-overlays
+	icon_manager = new() // Sets up icon manager for pipes
 	setup_allturfs()
 	setup_atmos_machinery(GLOB.machines)
 	setup_pipenets(GLOB.machines)
@@ -275,12 +280,8 @@ SUBSYSTEM_DEF(air)
 		if(blockchanges && T.excited_group)
 			T.excited_group.garbage_collect()
 	else
-		for(var/direction in GLOB.cardinal)
-			if(!(T.atmos_adjacent_turfs & direction))
-				continue
-			var/turf/simulated/S = get_step(T, direction)
-			if(istype(S))
-				add_to_active(S)
+		for(var/turf/simulated/S in T.atmos_adjacent_turfs)
+			add_to_active(S)
 
 /datum/controller/subsystem/air/proc/setup_allturfs(var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
 	var/list/active_turfs = src.active_turfs
@@ -324,7 +325,7 @@ SUBSYSTEM_DEF(air)
 	var/watch = start_watch()
 	log_startup_progress("Initializing atmospherics machinery...")
 	var/count = _setup_atmos_machinery(machines_to_init)
-	log_startup_progress("	Initialized [count] atmospherics machines in [stop_watch(watch)]s.")
+	log_startup_progress("Initialized [count] atmospherics machines in [stop_watch(watch)]s.")
 
 // this underscored variant is so that we can have a means of late initing
 // atmos machinery without a loud announcement to the world
@@ -348,7 +349,7 @@ SUBSYSTEM_DEF(air)
 	var/watch = start_watch()
 	log_startup_progress("Initializing pipe networks...")
 	var/count = _setup_pipenets(pipes)
-	log_startup_progress("	Initialized [count] pipenets in [stop_watch(watch)]s.")
+	log_startup_progress("Initialized [count] pipenets in [stop_watch(watch)]s.")
 
 // An underscored wrapper that exists for the same reason
 // the machine init wrapper does

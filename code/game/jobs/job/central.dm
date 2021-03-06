@@ -34,6 +34,9 @@
 		/obj/item/implant/dust
 	)
 	backpack = /obj/item/storage/backpack/satchel
+	backpack_contents = list(
+		/obj/item/stamp/centcom = 1,
+	)
 	box = /obj/item/storage/box/centcomofficer
 	cybernetic_implants = list(
 		/obj/item/organ/internal/cyberimp/chest/nutriment/plus
@@ -90,8 +93,8 @@
 		/obj/item/implant/dust
 	)
 	cybernetic_implants = list(
-		/obj/item/organ/internal/cyberimp/eyes/xray,
-		/obj/item/organ/internal/cyberimp/brain/anti_stun,
+		/obj/item/organ/internal/eyes/cybernetic/xray,
+		/obj/item/organ/internal/cyberimp/brain/anti_stun/hardened,
 		/obj/item/organ/internal/cyberimp/chest/nutriment/plus,
 		/obj/item/organ/internal/cyberimp/arm/combat/centcom
 	)

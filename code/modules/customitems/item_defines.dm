@@ -48,7 +48,7 @@
 
 	var/mob/living/carbon/human/target = M
 
-	if(ismachine(target))
+	if(ismachineperson(target))
 		to_chat(user, "<span class= 'notice'>[target] has no skin, how do you expect to tattoo [target.p_them()]?</span>")
 		return
 
@@ -272,15 +272,6 @@
 	new /obj/item/reagent_containers/food/drinks/cans/cola(src)
 
 
-/obj/item/instrument/guitar/jello_guitar //Pineapple Salad: Dan Jello
-	name = "Dan Jello's Pink Guitar"
-	desc = "Dan Jello's special pink guitar."
-	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "jello_guitar"
-	item_state = "jello_guitar"
-	righthand_file = 'icons/mob/inhands/fluff_righthand.dmi'
-	lefthand_file = 'icons/mob/inhands/fluff_lefthand.dmi'
-
 /obj/item/fluff/wingler_comb
 	name = "blue comb"
 	desc = "A blue comb, it looks like it was made to groom a Tajaran's fur."
@@ -349,7 +340,7 @@
 		to_chat(user, "<span class='notice'>You modify the appearance of [target].</span>")
 		var/obj/item/clothing/mask/gas/M = target
 		M.name = "Prescription Gas Mask"
-		M.desc = "It looks heavily modified, but otherwise functions as a gas mask. The words “Property of Yon-Dale” can be seen on the inner band."
+		M.desc = "It looks heavily modified, but otherwise functions as a gas mask. The words \"Property of Yon-Dale\" can be seen on the inner band."
 		M.icon = 'icons/obj/custom_items.dmi'
 		M.icon_state = "gas_tariq"
 		M.sprite_sheets = list(
@@ -816,7 +807,7 @@
 	item_state = "supplymaster_jacket_open"
 	ignore_suitadjust = 0
 	suit_adjusted = 1
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	actions_types = list(/datum/action/item_action/button)
@@ -980,7 +971,7 @@
 	icon_state = "xantholne_wintercoat"
 	hoodtype = /obj/item/clothing/head/hooded/hood/fluff/xantholne
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency_oxygen, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter)
 
 
 /obj/item/clothing/head/hooded/hood/fluff/xantholne // Xantholne: Meex Zwichsnicrur
@@ -1001,7 +992,7 @@
 	hoodtype = /obj/item/clothing/head/hooded/hood/fluff/xydonus
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
 
 /obj/item/clothing/head/hooded/hood/fluff/xydonus
 	name = "custom fit hood"
@@ -1064,7 +1055,7 @@
 	icon_state = "dtxbomber"
 	item_state = "dtxbomber"
 	ignore_suitadjust = 0
-	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
+	allowed = list(/obj/item/flashlight,/obj/item/tank/internals/emergency_oxygen,/obj/item/toy,/obj/item/storage/fancy/cigarettes,/obj/item/lighter)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	actions_types = list(/datum/action/item_action/zipper)
@@ -1080,7 +1071,6 @@
 	icon_state = "counterfeitguise"
 	item_state = "counterfeitguise"
 	item_color = "counterfeitguise"
-	flags_size = ONESIZEFITSALL
 
 /obj/item/clothing/under/fluff/benjaminfallout // Benjaminfallout: Pretzel Brassheart
 	icon = 'icons/obj/custom_items.dmi'
@@ -1223,7 +1213,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "fox_jacket"
 	item_state = "fox_jacket"
-	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency_oxygen, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/projectile/automatic/pistol, /obj/item/gun/projectile/revolver, /obj/item/gun/projectile/revolver/detective)
+	allowed = list(/obj/item/flashlight, /obj/item/tank/internals/emergency_oxygen, /obj/item/toy, /obj/item/storage/fancy/cigarettes, /obj/item/lighter, /obj/item/gun/projectile/automatic/pistol, /obj/item/gun/projectile/revolver, /obj/item/gun/projectile/revolver/detective)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
 	min_cold_protection_temperature = FIRE_SUIT_MIN_TEMP_PROTECT
@@ -1350,7 +1340,6 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "chronx_robe"
 	item_state = "chronx_robe"
-	flags_size = ONESIZEFITSALL
 	actions_types = list(/datum/action/item_action/toggle)
 	adjust_flavour = "untransform"
 	ignore_suitadjust = 0
@@ -1594,13 +1583,17 @@
 	item_state = "asmer_accordion"
 
 
-/obj/item/clothing/head/rabbitears/fluff/pinesalad_bunny // Pineapple Salad : Dan Jello
-	name = "Bluespace rabbit ears"
-	desc = "A pair of sparkly bluespace rabbit ears, with a small tag on them that reads, 'Dan Jello~'. Yuck, \
-	 there's some pink slime on the part that goes on your head!"
+/obj/item/clothing/head/fluff/pinesalad_horns //Pineapple Salad: Dan Jello
+	name = "Bluespace Horns"
+	desc = "A pair of fake horns. Now with added bluespace!"
 	icon = 'icons/obj/custom_items.dmi'
-	icon_state = "ps_bunny"
+	icon_state = "ps_horns"
 
+/obj/item/storage/backpack/fluff/hiking //Pineapple Salad: Dan Jello
+	name = "\improper Fancy Hiking Pack"
+	desc = "A black and red hiking pack with some nice little accessories."
+	icon = 'icons/obj/custom_items.dmi'
+	icon_state = "danpack"
 
 /obj/item/clothing/under/fluff/kiaoutfit //FullOfSkittles: Kiachi
 	name = "Suspicious Outfit"
@@ -1658,13 +1651,16 @@
 	desc = "A small platinum ring with a large light blue diamond. Engraved inside the band are the words: 'To my lovely Pristine Princess. Forever yours, Savinien.'"
 	icon_state = "benjaminfallout_ring"
 
-/obj/item/clothing/under/fluff/voxbodysuit //Gangelwaefre: Kikeri
-	name = "Vox Bodysuit"
-	desc = "A shimmering bodysuit custom-fit to a vox. Has shorts sewn in."
+
+/obj/item/clothing/under/fluff/kikeridress //Gangelwaefre: Kikeri
+	name = "Kikeri's Dress"
+	desc = "A simple black dress with a white undercoat, tied with a blue ribbon."
 	lefthand_file = 'icons/mob/inhands/fluff_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/fluff_righthand.dmi'
-	icon = 'icons/mob/inhands/fluff_righthand.dmi'
-	icon_state = "voxbodysuit"
-	item_state = "voxbodysuit"
-	item_color = "voxbodysuit"
-	body_parts_covered = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
+	icon = 'icons/obj/custom_items.dmi'
+	icon_state = "kikeridress"
+	item_state = "kikeridress"
+	item_color = "kikeridress"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	species_restricted = list("Vox")

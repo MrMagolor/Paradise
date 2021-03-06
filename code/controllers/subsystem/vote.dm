@@ -3,6 +3,7 @@ SUBSYSTEM_DEF(vote)
 	wait = 10
 	flags = SS_KEEP_TIMING|SS_NO_INIT
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
+	offline_implications = "Votes (Endround shuttle) will no longer function. Shuttle call recommended."
 
 	var/initiator = null
 	var/started_time = null
@@ -179,7 +180,7 @@ SUBSYSTEM_DEF(vote)
 
 
 	if(restart)
-		world.Reboot("Restart vote successful.", "end_error", "restart vote")
+		SSticker.reboot_helper("Restart vote successful.", "restart vote")
 
 	return .
 
@@ -248,11 +249,11 @@ SUBSYSTEM_DEF(vote)
 			You have [config.vote_period/10] seconds to vote.</font>"})
 		switch(vote_type)
 			if("crew_transfer")
-				world << sound('sound/ambience/alarm4.ogg')
+				SEND_SOUND(world, sound('sound/ambience/alarm4.ogg'))
 			if("gamemode")
-				world << sound('sound/ambience/alarm4.ogg')
+				SEND_SOUND(world, sound('sound/ambience/alarm4.ogg'))
 			if("custom")
-				world << sound('sound/ambience/alarm4.ogg')
+				SEND_SOUND(world, sound('sound/ambience/alarm4.ogg'))
 		if(mode == "gamemode" && SSticker.ticker_going)
 			SSticker.ticker_going = FALSE
 			to_chat(world, "<font color='red'><b>Round start has been delayed.</b></font>")
@@ -366,7 +367,7 @@ SUBSYSTEM_DEF(vote)
 				var/votedesc = capitalize(mode)
 				if(mode == "custom")
 					votedesc += " ([question])"
-				admin_log_and_message_admins("cancelled the running [votedesc] vote.")
+				log_and_message_admins("cancelled the running [votedesc] vote.")
 				reset()
 		if("toggle_restart")
 			if(admin)
